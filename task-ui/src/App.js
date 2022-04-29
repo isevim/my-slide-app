@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.scss";
-import Form from "./Component/Form";
-import Frame from "./Component/Frame";
+import Form from "./Component/Form/Form";
+import Frame from "./Component/Frame/Frame";
 
 function App() {
   const [playlist, setPlaylist] = useState([]);
@@ -25,20 +25,20 @@ function App() {
       });
   };
   useEffect(() => {
-    fetch("http://localhost:1955/api/playlist", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
-        setPlaylist((prev) => [...prev, ...data]);
+      fetch("http://localhost:1955/api/playlist", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Success:", data);
+          setPlaylist(data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
   }, []);
 
   return (

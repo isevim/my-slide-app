@@ -2,13 +2,18 @@ import React, { useState } from "react";
 import "./Form.scss";
 
 export default function Form({ onSubmit }) {
-  const [inputs, setInputs] = useState({});
+  const [inputs, setInputs] = useState({
+    name:"",
+    duration:1,
+    url:"",
+    type:"video/mp4"});
 
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     setInputs((values) => ({ ...values, [name]: value }));
   };
+ 
   return (
       <form
         onSubmit={(e) => {
@@ -55,10 +60,10 @@ export default function Form({ onSubmit }) {
             name="type"
             onChange={handleChange}
             required
-            placeholder="Please choose.."
+            defaultValue="video/mp4"
           >
-            <option value="1">Image</option>
-            <option value="2">Video</option>
+            <option value="image/jpg">Image</option>
+            <option value="video/mp4">Video</option>
           </select>
         </div>
         <div className="form__item">
